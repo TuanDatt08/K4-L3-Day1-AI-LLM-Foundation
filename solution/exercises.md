@@ -27,7 +27,7 @@ mỗi lần trung bình ~350 token đầu ra.
 
 **Ước tính GPT-4o đắt hơn GPT-4o-mini bao nhiêu lần cho workload này? Nêu một
 trường hợp GPT-4o xứng đáng với chi phí và một trường hợp nên dùng mini:**
-> Vì cùng có 350 token đầu ra mỗi lần gọi, GPT-4o có giá output 0.010 USD/1K token còn GPT-4o-mini là 0.0006 USD/1K token, nên GPT-4o đắt khoảng 16,7 lần. Với 10.000 người dùng và 3 lượt/ngày, tổng là 105 triệu token output/ngày; GPT-4o phù hợp cho phân tích phức tạp hoặc yêu cầu độ chính xác cao, còn mini phù hợp cho phân loại yêu cầu và trả lời thường ngày để giảm chi phí.
+> Vì cùng có 350 token đầu ra mỗi lần gọi, GPT-4o có giá output 0.010 USD/1K token còn GPT-4o-mini là 0.0006 USD/1K token, nên GPT-4o đắt khoảng 16,7 lần. Với 10.000 người dùng và 3 lượt/ngày, tổng là 10 triệu rưỡi token output/ngày; GPT-4o phù hợp cho phân tích phức tạp hoặc yêu cầu độ chính xác cao, còn mini phù hợp cho phân loại yêu cầu và trả lời thường ngày để giảm chi phí.
 
 ---
 
@@ -49,7 +49,7 @@ Chọn một đoạn văn tiếng Việt ~100 từ. So sánh số token theo `co
 
 **Hai con số chênh nhau bao nhiêu phần trăm? Vì sao tiếng Việt thường tốn
 nhiều token hơn tiếng Anh cùng độ dài?**
-> Với một đoạn tiếng Việt khoảng 100 từ, ví dụ tiktoken đếm được 145 token, còn công thức số từ / 0.75 ước tính khoảng 133 token; chênh lệch là khoảng 9% so với ước tính. Hai con số khác nhau vì tokenizer không nhất thiết coi mỗi từ là một token: dấu câu, khoảng trắng, từ có dấu và các phần của từ có thể được tách riêng. Tiếng Việt thường tốn nhiều token hơn tiếng Anh vì cách phân tách từ và dữ liệu huấn luyện của tokenizer phù hợp với tiếng Anh hơn, đặc biệt với ký tự có dấu.
+> Với đoạn văn tiếng Việt 106 từ, ước lượng số từ / 0.75 ra khoảng 141 token, còn tiktoken (GPT-4o) đếm được 134 token, tức ước lượng cao hơn thực tế khoảng 5,5%. Tiếng Việt vẫn tốn nhiều token hơn tiếng Anh (bản dịch cùng nội dung chỉ 109 token), vì bộ mã hóa BPE học chủ yếu từ tiếng Anh nên hay cắt chữ có dấu.
 
 ---
 
@@ -58,7 +58,7 @@ nhiều token hơn tiếng Anh cùng độ dài?**
 ### Câu 3.1 — Trải nghiệm người dùng với streaming
 **Streaming quan trọng nhất trong trường hợp nào, và khi nào thì
 non-streaming lại phù hợp hơn?** (1 đoạn văn)
-> Streaming quan trọng khi người dùng phải chờ câu trả lời dài, chẳng hạn chatbot, trợ lý học tập hoặc công cụ viết nội dung.Non-streaming phù hợp khi cần toàn bộ kết quả trước khi xử lý bước tiếp theo, khi lưu một response hoàn chỉnh vào cơ sở dữ liệu, hoặc khi phản hồi rất ngắn.
+> Streaming quan trọng khi người dùng phải chờ câu trả lời dài, chẳng hạn chatbot, trợ lý học tập hoặc công cụ viết nội dung. Non-streaming phù hợp khi cần toàn bộ kết quả trước khi xử lý bước tiếp theo, khi lưu một response hoàn chỉnh vào cơ sở dữ liệu, hoặc khi phản hồi rất ngắn.
 
 ### Câu 3.2 — Vì sao backoff theo cấp số nhân?
 **So với delay cố định (ví dụ luôn chờ 1 giây), exponential backoff có lợi
